@@ -228,7 +228,7 @@ namespace eka2l1::epoc {
             const std::uint32_t bitmap_bpp = static_cast<std::uint32_t>(bitmap_sizes[idx].first >> 32);
             eka2l1::object_size bitmap_stored_size(static_cast<int>(bitmap_sizes[idx].first), static_cast<int>(bitmap_sizes[idx].second));
 
-            should_recreate = (bmp->header_.size_pixels != bitmap_stored_size) || (bitmap_bpp != suit_bpp);
+            should_recreate = (bmp->header_.size_pixels != bitmap_stored_size) && (bitmap_bpp == suit_bpp);
         }
 
         if (should_recreate) {
