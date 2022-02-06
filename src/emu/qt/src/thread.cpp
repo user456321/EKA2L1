@@ -109,6 +109,8 @@ static void on_ui_window_key_release(void *userdata, const int key) {
     eka2l1::desktop::emulator *emu = reinterpret_cast<eka2l1::desktop::emulator *>(userdata);
     auto key_evt = make_key_event_driver(key, eka2l1::drivers::key_state::released);
 
+    LOG_TRACE(eka2l1::KERNEL, "Key released code {}", key);
+
     const std::lock_guard<std::mutex> guard(emu->lockdown);
     if (emu->winserv)
         emu->winserv->queue_input_from_driver(key_evt);
@@ -117,6 +119,8 @@ static void on_ui_window_key_release(void *userdata, const int key) {
 static void on_ui_window_key_press(void *userdata, const int key) {
     eka2l1::desktop::emulator *emu = reinterpret_cast<eka2l1::desktop::emulator *>(userdata);
     auto key_evt = make_key_event_driver(key, eka2l1::drivers::key_state::pressed);
+
+    LOG_TRACE(eka2l1::KERNEL, "Key pressed code {}", key);
 
     const std::lock_guard<std::mutex> guard(emu->lockdown);
     if (emu->winserv)
