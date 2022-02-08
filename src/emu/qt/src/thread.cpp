@@ -165,7 +165,7 @@ namespace eka2l1::desktop {
         }
         }
 
-        state.joystick_controller = drivers::new_emu_controller(eka2l1::drivers::controller_type::glfw);
+        state.joystick_controller = drivers::new_emu_controller(eka2l1::drivers::controller_type::sdl2);
         state.joystick_controller->on_button_event = [&](int jid, int button, bool pressed) {
             const std::lock_guard<std::mutex> guard(state.lockdown);
             auto evt = make_controller_event_driver(jid, button, pressed);

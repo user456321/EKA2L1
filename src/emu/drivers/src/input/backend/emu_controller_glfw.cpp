@@ -22,6 +22,7 @@
 #include <cmath>
 
 #include <drivers/input/backend/emu_controller_glfw.h>
+#include <drivers/input/common.h>
 
 namespace eka2l1 {
     namespace drivers {
@@ -95,67 +96,6 @@ namespace eka2l1 {
         void emu_controller_glfw3::stop_polling() {
             shall_stop = true;
             polling_thread->join();
-        }
-
-        const char *emu_controller_glfw3::button_to_string(const int button_code) {
-            const char *FAST_LOOKUP_SIMPLE[] = {
-                "A",
-                "B",
-                "X",
-                "Y",
-                "LB",
-                "RB",
-                "Back",
-                "Start",
-                "Guide",
-                "LT",
-                "RT",
-                "Dpad Up",
-                "Dpad Right",
-                "Dpad Down",
-                "Dpad Left"
-            };
-
-            if (button_code <= GLFW_GAMEPAD_BUTTON_LAST) {
-                return FAST_LOOKUP_SIMPLE[button_code];
-            }
-
-            switch (button_code) {
-            case CONTROLLER_BUTTON_CODE_LEFT_STICK_DOWN:
-                return "Left joystick Down";
-
-            case CONTROLLER_BUTTON_CODE_LEFT_STICK_LEFT:
-                return "Left joystick Left";
-
-            case CONTROLLER_BUTTON_CODE_LEFT_STICK_RIGHT:
-                return "Left joystick Right";
-
-            case CONTROLLER_BUTTON_CODE_LEFT_STICK_UP:
-                return "Left joystick Up";
-
-            case CONTROLLER_BUTTON_CODE_RIGHT_STICK_DOWN:
-                return "Right joystick Down";
-
-            case CONTROLLER_BUTTON_CODE_RIGHT_STICK_LEFT:
-                return "Right joystick Left";
-
-            case CONTROLLER_BUTTON_CODE_RIGHT_STICK_RIGHT:
-                return "Right joystick Right";
-
-            case CONTROLLER_BUTTON_CODE_RIGHT_STICK_UP:
-                return "Right joystick Up";
-
-            case CONTROLLER_BUTTON_CODE_LEFT_TRIGGER:
-                return "Left trigger";
-
-            case CONTROLLER_BUTTON_CODE_RIGHT_TRIGGER:
-                return "Right trigger";
-
-            default:
-                break;
-            }
-
-            return nullptr;
         }
     }
 }

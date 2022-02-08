@@ -18,6 +18,7 @@
  */
 
 #include <drivers/input/backend/emu_controller_glfw.h>
+#include <drivers/input/backend/emu_controller_sdl2.h>
 #include <drivers/input/emu_controller.h>
 
 namespace eka2l1 {
@@ -27,6 +28,9 @@ namespace eka2l1 {
             case controller_type::glfw: {
                 return std::make_unique<emu_controller_glfw3>();
             }
+
+            case controller_type::sdl2:
+                return std::make_unique<emu_controller_sdl2>();
             }
 
             return nullptr;

@@ -59,6 +59,7 @@ add_library(drivers
         src/audio/backend/player_shared.cpp
         src/hwrm/backend/vibration_null.cpp
         src/hwrm/vibration.cpp
+        src/input/common.cpp
         src/graphics/buffer.cpp
         src/graphics/context.cpp
         src/graphics/fb.cpp
@@ -86,12 +87,16 @@ if (NOT ANDROID)
         include/drivers/graphics/backend/cursor_glfw.h
         include/drivers/graphics/backend/emu_window_glfw.h
         include/drivers/input/backend/emu_controller_glfw.h
+        include/drivers/input/backend/emu_controller_sdl2.h
+        include/drivers/hwrm/backend/vibration_sdl2.h
         src/graphics/cursor.cpp
         src/graphics/emu_window.cpp
         src/graphics/backend/cursor_glfw.cpp
         src/graphics/backend/emu_window_glfw.cpp
         src/input/backend/emu_controller_glfw.cpp
-        src/input/emu_controller.cpp)
+        src/input/backend/emu_controller_sdl2.cpp
+        src/input/emu_controller.cpp
+        src/hwrm/backend/vibration_sdl2.cpp)
 else()
     target_sources(drivers PRIVATE
         include/drivers/hwrm/backend/vibration_jdk.h
@@ -148,7 +153,7 @@ target_link_libraries(miniBAE_EMU PRIVATE common)
 
 target_link_libraries(drivers PRIVATE common cubeb ffmpeg glad glm miniBAE_EMU)
 if (NOT ANDROID)
-    target_link_libraries(drivers PRIVATE glfw)
+    target_link_libraries(drivers PRIVATE glfw SDL2)
 endif()
 
 target_include_directories(drivers PUBLIC include ${MINIBAE_PUBLIC_INCLUDE_DIRS} ${TSF_INCLUDE})
