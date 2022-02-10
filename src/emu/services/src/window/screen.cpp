@@ -106,7 +106,7 @@ namespace eka2l1::epoc {
     screen::screen(const int number, epoc::config::screen &scr_conf)
         : number(number)
         , ui_rotation(0)
-        , refresh_rate(60)
+        , refresh_rate(20)
         , display_scale_factor(1.0f)
         , logic_scale_factor_x(1.0f)
         , logic_scale_factor_y(1.0f)
